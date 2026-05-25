@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="个人博客兼知识库，记录编程学习笔记、技术文章和持续成长。"
+    />
+    <title>Hwang's Blog | 编程学习笔记与知识库</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=ZCOOL+XiaoWei&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="site-noise" aria-hidden="true"></div>
+
+    <header class="site-header" id="siteHeader">
+      <a class="brand" href="#home" aria-label="返回首页">Hwang's Blog</a>
+      <button class="nav-toggle" id="navToggle" aria-label="打开导航" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="siteNav" aria-label="主导航">
+        <a href="#home" data-nav="home">首页</a>
+        <a href="#archive" data-nav="archive">归档</a>
+        <a href="#categories" data-nav="categories">分类</a>
+        <a href="#tags" data-nav="tags">标签</a>
+        <a href="#about" data-nav="about">关于</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero" aria-labelledby="site-title">
+        <div class="hero-stars" aria-hidden="true"></div>
+        <div class="hero-content">
+          <h1 id="site-title">Hwang's Blog</h1>
+          <p class="typewriter" id="typewriter" aria-live="polite"></p>
+        </div>
+        <a class="scroll-down" href="#content" aria-label="滚动到文章列表"></a>
+      </section>
+
+      <section class="page-shell" id="content">
+        <section class="feed-column" aria-label="文章列表">
+          <div class="toolbar card">
+            <label class="search-box" for="searchInput">
+              <span aria-hidden="true">⌕</span>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="搜索编程笔记、技术文章、标签..."
+                autocomplete="off"
+              />
+            </label>
+            <button class="clear-filter" id="clearFilter" type="button">全部文章</button>
+          </div>
+
+          <div class="section-heading">
+            <h2>最新文章</h2>
+            <span id="resultCount">0 篇</span>
+          </div>
+
+          <div class="active-filter" id="activeFilter" hidden></div>
+          <div class="post-list" id="postList"></div>
+        </section>
+
+        <aside class="sidebar" aria-label="侧边栏">
+          <section class="profile-card card">
+            <a
+              class="avatar github-avatar"
+              href="https://github.com/bujue600-arch"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="访问 GitHub 主页"
+            >
+              <img
+                src="https://github.com/bujue600-arch.png?size=180"
+                alt="bujue600-arch 的 GitHub 头像"
+              />
+            </a>
+            <h2>bujue600-arch</h2>
+            <p>Frontend Learner · Knowledge Builder · Truth Seeker</p>
+            <div class="profile-stats" id="profileStats"></div>
+            <a
+              class="github-follow"
+              href="https://github.com/bujue600-arch"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span class="github-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path
+                    d="M12 .5A11.5 11.5 0 0 0 8.36 22.9c.58.1.79-.25.79-.56v-2.02c-3.22.7-3.9-1.38-3.9-1.38-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.28-5.27-5.72 0-1.26.45-2.3 1.2-3.1-.12-.3-.52-1.48.11-3.07 0 0 .98-.31 3.17 1.18a10.9 10.9 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.07.75.8 1.2 1.84 1.2 3.1 0 4.45-2.71 5.42-5.29 5.71.42.36.8 1.08.8 2.18v3.23c0 .31.2.67.8.56A11.5 11.5 0 0 0 12 .5Z"
+                  />
+                </svg>
+              </span>
+              Follow Me
+            </a>
+            <a
+              class="github-icon-link"
+              href="https://github.com/bujue600-arch"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
+              <svg viewBox="0 0 24 24" role="img" focusable="false">
+                <path
+                  d="M12 .5A11.5 11.5 0 0 0 8.36 22.9c.58.1.79-.25.79-.56v-2.02c-3.22.7-3.9-1.38-3.9-1.38-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.28-5.27-5.72 0-1.26.45-2.3 1.2-3.1-.12-.3-.52-1.48.11-3.07 0 0 .98-.31 3.17 1.18a10.9 10.9 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.07.75.8 1.2 1.84 1.2 3.1 0 4.45-2.71 5.42-5.29 5.71.42.36.8 1.08.8 2.18v3.23c0 .31.2.67.8.56A11.5 11.5 0 0 0 12 .5Z"
+                />
+              </svg>
+            </a>
+          </section>
+
+          <section class="notice-card card">
+            <h2>公告</h2>
+            <p>本站第一版聚焦编程学习笔记与技术文章，后续会逐步补充项目复盘和面试专题。</p>
+          </section>
+
+          <section class="side-card card">
+            <h2>最新文章</h2>
+            <div class="mini-list" id="latestList"></div>
+          </section>
+
+          <section class="side-card card" id="categories">
+            <h2>分类</h2>
+            <div class="category-list" id="categoryList"></div>
+          </section>
+
+          <section class="side-card card" id="tags">
+            <h2>标签</h2>
+            <div class="tag-cloud" id="tagCloud"></div>
+          </section>
+
+          <section class="side-card card" id="archive">
+            <h2>归档</h2>
+            <div class="archive-list" id="archiveList"></div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="about-band" id="about" aria-labelledby="aboutTitle">
+        <div class="about-inner">
+          <h2 id="aboutTitle">关于这个知识库</h2>
+          <p>
+            这里会持续记录我在编程学习中的理解、复盘和方法论。文章优先追求“能被未来的自己和别人读懂”，所以会尽量把概念、代码场景和实践经验放在一起写清楚。
+          </p>
+        </div>
+      </section>
+
+      <section class="site-info-section" aria-labelledby="siteInfoTitle">
+        <div class="site-info-card card">
+          <h2 id="siteInfoTitle">
+            <span class="site-info-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img" focusable="false">
+                <path d="M4 19h16v2H2V3h2v16Zm3-2H5V9h2v8Zm4 0H9V5h2v12Zm4 0h-2v-6h2v6Zm5 0h-4.6l3.2-3.2-2.1-2.1 1.4-1.4 3.5 3.5L20 17Z" />
+              </svg>
+            </span>
+            网站信息
+          </h2>
+          <dl class="site-info-grid">
+            <div>
+              <dt>文章数目：</dt>
+              <dd id="siteArticleCount">0</dd>
+            </div>
+            <div>
+              <dt>本站访客数：</dt>
+              <dd id="siteVisitorCount">1</dd>
+            </div>
+            <div>
+              <dt>本站总浏览量：</dt>
+              <dd id="siteViewCount">1</dd>
+            </div>
+            <div>
+              <dt>最后更新时间：</dt>
+              <dd>刚刚</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+    </main>
+
+    <section class="reader" id="reader" aria-hidden="true">
+      <div class="reader-backdrop" data-close-reader></div>
+      <article class="reader-panel" role="dialog" aria-modal="true" aria-labelledby="readerTitle">
+        <button class="reader-close" type="button" data-close-reader aria-label="关闭文章">×</button>
+        <div class="reader-meta" id="readerMeta"></div>
+        <h2 id="readerTitle"></h2>
+        <div class="reader-tags" id="readerTags"></div>
+        <div class="reader-content" id="readerContent"></div>
+      </article>
+    </section>
+
+    <footer class="site-footer">
+      <p>© 2026 Hwang's Blog. Built for learning in public.</p>
+      <a class="deerflow-signature" href="https://deerflow.tech" target="_blank" rel="noreferrer">
+        Created By Deerflow
+      </a>
+    </footer>
+
+    <button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
