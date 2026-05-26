@@ -1,99 +1,4 @@
-const posts = [
-  {
-    id: "javascript-event-loop",
-    title: "JavaScript 事件循环学习笔记",
-    category: "JavaScript",
-    date: "2026-05-20",
-    readTime: "8 min",
-    cover:
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80",
-    tags: ["JavaScript", "浏览器", "异步"],
-    excerpt:
-      "从调用栈、任务队列和微任务三个角度，把事件循环理解成浏览器安排代码执行顺序的调度规则。",
-    content: `
-      <p>事件循环不是一个孤立概念，它连接了调用栈、Web API、宏任务和微任务。理解它之后，再看 Promise、setTimeout、async/await 的输出顺序就会稳定很多。</p>
-      <h3>我的理解方式</h3>
-      <p>同步代码先进入调用栈执行；异步能力交给浏览器或运行时处理；回调在合适的时机回到任务队列。每次宏任务结束后，运行时会尽量清空微任务队列，然后再进入下一轮渲染和任务。</p>
-      <pre><code>console.log("start");
-setTimeout(() => console.log("timer"));
-Promise.resolve().then(() => console.log("promise"));
-console.log("end");</code></pre>
-      <p>这段代码的输出顺序是 start、end、promise、timer。原因是同步代码先执行，Promise 回调进入微任务，setTimeout 回调进入宏任务。</p>
-    `,
-  },
-  {
-    id: "css-layout-review",
-    title: "CSS 布局复盘：Grid 与 Flex 怎么选",
-    category: "CSS",
-    date: "2026-05-16",
-    readTime: "6 min",
-    cover:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
-    tags: ["CSS", "布局", "响应式"],
-    excerpt:
-      "用一维和二维这条线来区分 Flex 与 Grid，让页面结构更稳定，也让移动端适配更可控。",
-    content: `
-      <p>Flex 更适合处理一条轴上的排列，比如导航、按钮组、卡片内部的图文。Grid 更适合处理二维布局，比如博客主体的文章列和侧边栏。</p>
-      <h3>实践规则</h3>
-      <p>当布局需要同时关心行和列时优先用 Grid；当只需要处理横向或纵向排列时用 Flex。这个规则不绝对，但能避免很多嵌套混乱。</p>
-      <p>个人博客首页就是典型 Grid 场景：桌面端主列加侧边栏，移动端直接变成一列。</p>
-    `,
-  },
-  {
-    id: "react-state-thinking",
-    title: "React 状态设计：先分清来源再写组件",
-    category: "React",
-    date: "2026-05-08",
-    readTime: "9 min",
-    cover:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80",
-    tags: ["React", "组件设计", "状态管理"],
-    excerpt:
-      "组件写乱很多时候不是 API 不熟，而是没有先判断状态到底属于服务端、页面、组件还是派生数据。",
-    content: `
-      <p>写 React 前先问一个问题：这个状态的真实来源在哪里？如果它可以从已有数据计算出来，就不要再单独存一份。</p>
-      <h3>四类状态</h3>
-      <p>服务端状态来自接口；页面状态控制筛选、分页和弹窗；组件状态处理输入、展开和临时交互；派生状态应该通过计算得到。</p>
-      <p>把状态分清楚以后，组件层级和数据流会自然很多，也更容易排查 bug。</p>
-    `,
-  },
-  {
-    id: "typescript-notes",
-    title: "TypeScript 入门后真正有用的三个习惯",
-    category: "TypeScript",
-    date: "2026-04-28",
-    readTime: "7 min",
-    cover:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80",
-    tags: ["TypeScript", "类型系统", "工程化"],
-    excerpt:
-      "少写 any、先定义边界数据、让类型服务业务含义，而不是为了类型而类型。",
-    content: `
-      <p>TypeScript 的价值不只是补全提示，它更重要的作用是把数据边界写清楚，让错误尽早暴露。</p>
-      <h3>三个习惯</h3>
-      <p>第一，接口返回值不要偷懒写 any。第二，外部输入先校验再进入业务逻辑。第三，类型名称要表达业务含义，而不是只描述形状。</p>
-      <p>当类型能帮助别人理解代码意图时，它才真正发挥了作用。</p>
-    `,
-  },
-  {
-    id: "learning-system",
-    title: "如何把零散学习变成知识库",
-    category: "学习方法",
-    date: "2026-04-18",
-    readTime: "5 min",
-    cover:
-      "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=900&q=80",
-    tags: ["学习方法", "知识库", "复盘"],
-    excerpt:
-      "技术学习不能只收藏链接，更要把问题、结论、例子和复盘写成能被再次使用的内容。",
-    content: `
-      <p>知识库不是资料仓库。资料仓库解决“放在哪里”，知识库解决“下次怎么用”。</p>
-      <h3>记录模板</h3>
-      <p>我会按照四个部分记录：遇到的问题、当时的误解、最终的理解、下次遇到类似问题如何判断。</p>
-      <p>这能把一次学习转化成长期资产，也能在面试或项目中更快组织表达。</p>
-    `,
-  },
-];
+let posts = [];
 
 const state = {
   query: "",
@@ -142,6 +47,114 @@ const countBy = (items, getter) =>
     });
     return acc;
   }, {});
+
+const escapeHtml = (value) =>
+  String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+function parseInlineMarkdown(text) {
+  return escapeHtml(text)
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>')
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+}
+
+function markdownToHtml(markdown) {
+  const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+  const html = [];
+  let paragraph = [];
+  let list = [];
+  let code = [];
+  let inCode = false;
+  let codeLang = "";
+
+  const flushParagraph = () => {
+    if (!paragraph.length) return;
+    html.push(`<p>${parseInlineMarkdown(paragraph.join(" "))}</p>`);
+    paragraph = [];
+  };
+
+  const flushList = () => {
+    if (!list.length) return;
+    html.push(`<ul>${list.map((item) => `<li>${parseInlineMarkdown(item)}</li>`).join("")}</ul>`);
+    list = [];
+  };
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith("```")) {
+      if (inCode) {
+        html.push(`<pre><code class="language-${escapeHtml(codeLang)}">${escapeHtml(code.join("\n"))}</code></pre>`);
+        code = [];
+        codeLang = "";
+        inCode = false;
+      } else {
+        flushParagraph();
+        flushList();
+        codeLang = trimmed.slice(3).trim();
+        inCode = true;
+      }
+      return;
+    }
+
+    if (inCode) {
+      code.push(line);
+      return;
+    }
+
+    if (!trimmed) {
+      flushParagraph();
+      flushList();
+      return;
+    }
+
+    if (trimmed.startsWith("### ")) {
+      flushParagraph();
+      flushList();
+      html.push(`<h3>${parseInlineMarkdown(trimmed.slice(4))}</h3>`);
+      return;
+    }
+
+    if (trimmed.startsWith("## ")) {
+      flushParagraph();
+      flushList();
+      html.push(`<h3>${parseInlineMarkdown(trimmed.slice(3))}</h3>`);
+      return;
+    }
+
+    if (trimmed.startsWith("- ")) {
+      flushParagraph();
+      list.push(trimmed.slice(2));
+      return;
+    }
+
+    paragraph.push(trimmed);
+  });
+
+  flushParagraph();
+  flushList();
+
+  if (inCode) {
+    html.push(`<pre><code class="language-${escapeHtml(codeLang)}">${escapeHtml(code.join("\n"))}</code></pre>`);
+  }
+
+  return html.join("");
+}
+
+async function loadPosts() {
+  const response = await fetch("posts/index.json");
+  if (!response.ok) {
+    throw new Error("无法加载文章索引");
+  }
+  posts = await response.json();
+  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+}
 
 function getFilteredPosts() {
   const query = state.query.trim().toLowerCase();
@@ -211,8 +224,6 @@ function renderSidebar() {
   `;
 
   els.latestList.innerHTML = posts
-    .slice()
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 5)
     .map((post) => `<button class="mini-link" type="button" data-post-id="${post.id}">${post.title}</button>`)
     .join("");
@@ -251,17 +262,29 @@ function renderSidebar() {
   if (els.siteViewCount) els.siteViewCount.textContent = posts.length * 2 + 1;
 }
 
-function openPost(id) {
+async function openPost(id) {
   const post = posts.find((item) => item.id === id);
   if (!post) return;
 
   els.readerTitle.textContent = post.title;
   els.readerMeta.textContent = `${formatDate(post.date)} · ${post.category} · ${post.readTime}`;
   els.readerTags.innerHTML = post.tags.map((tag) => `<span class="tag"># ${tag}</span>`).join("");
-  els.readerContent.innerHTML = post.content;
+  els.readerContent.innerHTML = "<p>文章加载中...</p>";
   els.reader.classList.add("is-open");
   els.reader.setAttribute("aria-hidden", "false");
   document.body.classList.add("reader-open");
+
+  try {
+    if (!post.content) {
+      const response = await fetch(`posts/${post.file}`);
+      if (!response.ok) throw new Error("文章文件加载失败");
+      post.content = markdownToHtml(await response.text());
+    }
+    els.readerContent.innerHTML = post.content;
+  } catch (error) {
+    els.readerContent.innerHTML = `<p>文章暂时无法加载，请稍后再试。</p>`;
+    console.error(error);
+  }
 }
 
 function closeReader() {
@@ -340,9 +363,7 @@ function bindEvents() {
 }
 
 function bootTypewriter() {
-  const phrases = [
-    "了解真相才能获得真正的自由",
-  ];
+  const phrases = ["了解真相才能获得真正的自由"];
   let phraseIndex = 0;
   let index = 0;
   let deleting = false;
@@ -377,7 +398,18 @@ function bootTypewriter() {
   tick();
 }
 
-renderSidebar();
-renderPosts();
-bindEvents();
-bootTypewriter();
+async function init() {
+  bindEvents();
+  bootTypewriter();
+
+  try {
+    await loadPosts();
+    renderSidebar();
+    renderPosts();
+  } catch (error) {
+    els.postList.innerHTML = `<div class="empty-state card">文章加载失败，请检查 posts/index.json。</div>`;
+    console.error(error);
+  }
+}
+
+init();
