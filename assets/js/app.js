@@ -69,6 +69,7 @@ function markdownToHtml(markdown) {
   const html = [];
   let paragraph = [];
   let list = [];
+  let listType = "ul";
   let code = [];
   let inCode = false;
   let codeLang = "";
@@ -81,8 +82,16 @@ function markdownToHtml(markdown) {
 
   const flushList = () => {
     if (!list.length) return;
-    html.push(`<ul>${list.map((item) => `<li>${parseInlineMarkdown(item)}</li>`).join("")}</ul>`);
+    html.push(`<${listType}>${list.map((item) => `<li>${parseInlineMarkdown(item)}</li>`).join("")}</${listType}>`);
     list = [];
+    listType = "ul";
+  };
+
+  const pushListItem = (type, item) => {
+    flushParagraph();
+    if (list.length && listType !== type) flushList();
+    listType = type;
+    list.push(item);
   };
 
   lines.forEach((line) => {
@@ -114,6 +123,13 @@ function markdownToHtml(markdown) {
       return;
     }
 
+    if (trimmed.startsWith("# ")) {
+      flushParagraph();
+      flushList();
+      html.push(`<h3>${parseInlineMarkdown(trimmed.slice(2))}</h3>`);
+      return;
+    }
+
     if (trimmed.startsWith("### ")) {
       flushParagraph();
       flushList();
@@ -129,8 +145,13 @@ function markdownToHtml(markdown) {
     }
 
     if (trimmed.startsWith("- ")) {
-      flushParagraph();
-      list.push(trimmed.slice(2));
+      pushListItem("ul", trimmed.slice(2));
+      return;
+    }
+
+    const orderedListItem = trimmed.match(/^\d+\.\s+(.+)$/);
+    if (orderedListItem) {
+      pushListItem("ol", orderedListItem[1]);
       return;
     }
 

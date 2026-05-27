@@ -1,57 +1,13 @@
 [
   {
-    "id": "javascript-event-loop",
-    "title": "JavaScript 事件循环学习笔记",
-    "category": "JavaScript",
-    "date": "2026-05-20",
-    "readTime": "8 min",
-    "cover": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80",
-    "tags": ["JavaScript", "浏览器", "异步"],
-    "excerpt": "从调用栈、任务队列和微任务三个角度，把事件循环理解成浏览器安排代码执行顺序的调度规则。",
-    "file": "javascript-event-loop.md"
-  },
-  {
-    "id": "css-layout-review",
-    "title": "CSS 布局复盘：Grid 与 Flex 怎么选",
-    "category": "CSS",
-    "date": "2026-05-16",
+    "id": "linked-list",
+    "title": "链表",
+    "category": "数据结构与算法",
+    "date": "2026-05-26",
     "readTime": "6 min",
-    "cover": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
-    "tags": ["CSS", "布局", "响应式"],
-    "excerpt": "用一维和二维这条线来区分 Flex 与 Grid，让页面结构更稳定，也让移动端适配更可控。",
-    "file": "css-layout-review.md"
-  },
-  {
-    "id": "react-state-thinking",
-    "title": "React 状态设计：先分清来源再写组件",
-    "category": "React",
-    "date": "2026-05-08",
-    "readTime": "9 min",
-    "cover": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80",
-    "tags": ["React", "组件设计", "状态管理"],
-    "excerpt": "组件写乱很多时候不是 API 不熟，而是没有先判断状态到底属于服务端、页面、组件还是派生数据。",
-    "file": "react-state-thinking.md"
-  },
-  {
-    "id": "typescript-notes",
-    "title": "TypeScript 入门后真正有用的三个习惯",
-    "category": "TypeScript",
-    "date": "2026-04-28",
-    "readTime": "7 min",
-    "cover": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80",
-    "tags": ["TypeScript", "类型系统", "工程化"],
-    "excerpt": "少写 any、先定义边界数据、让类型服务业务含义，而不是为了类型而类型。",
-    "file": "typescript-notes.md"
-  },
-  {
-    "id": "learning-system",
-    "title": "如何把零散学习变成知识库",
-    "category": "学习方法",
-    "date": "2026-04-18",
-    "readTime": "5 min",
-    "cover": "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=900&q=80",
-    "tags": ["学习方法", "知识库", "复盘"],
-    "excerpt": "技术学习不能只收藏链接，更要把问题、结论、例子和复盘写成能被再次使用的内容。",
-    "file": "learning-system.md"
+    "cover": "https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&w=900&q=80",
+    "tags": ["链表", "LeetCode", "JavaScript", "算法"],
+    "excerpt": "整理链表题目的通用模板，以及反转链表、移除元素、合并有序链表、两数相加和两两交换节点的 JavaScript 写法。",
+    "file": "linked-list.md"
   }
 ]
