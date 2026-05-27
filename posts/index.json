@@ -1,5 +1,16 @@
 [
   {
+    "id": "binary-tree-traversals",
+    "title": "二叉树（1）：四大搜索（前中后序递归 + 分层遍历）",
+    "category": "数据结构与算法",
+    "date": "2026-05-27",
+    "readTime": "7 min",
+    "cover": "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=900&q=80",
+    "tags": ["二叉树", "LeetCode", "JavaScript", "BFS", "DFS"],
+    "excerpt": "整理二叉树前序、中序、后序递归模板，以及 BFS 分层遍历模板和对应 LeetCode 题目的 JavaScript 写法。",
+    "file": "binary-tree-traversals.md"
+  },
+  {
     "id": "linked-list",
     "title": "链表",
     "category": "数据结构与算法",
