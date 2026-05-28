@@ -1,5 +1,16 @@
 [
   {
+    "id": "binary-tree-advanced",
+    "title": "二叉树（2）：进阶",
+    "category": "数据结构与算法",
+    "date": "2026-05-28",
+    "readTime": "8 min",
+    "cover": "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=900&q=80",
+    "tags": ["二叉树", "LeetCode", "JavaScript", "递归", "BFS"],
+    "excerpt": "整理二叉树最大深度、验证二叉搜索树、路径总和、有序数组转 BST、最大宽度和右视图等进阶题目的 JavaScript 写法。",
+    "file": "binary-tree-advanced.md"
+  },
+  {
     "id": "binary-tree-traversals",
     "title": "二叉树（1）：四大搜索（前中后序递归 + 分层遍历）",
     "category": "数据结构与算法",
