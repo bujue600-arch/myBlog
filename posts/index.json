@@ -1,5 +1,16 @@
 [
   {
+    "id": "css-specificity",
+    "title": "CSS 选择器优先级详解",
+    "category": "CSS",
+    "date": "2026-05-28",
+    "readTime": "9 min",
+    "cover": "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=900&q=80",
+    "tags": ["CSS", "选择器", "优先级", "面试"],
+    "excerpt": "用四位坐标法系统拆解 CSS 选择器优先级，覆盖继承、!important、:not、:is、:where 和同权重声明顺序等面试高频点。",
+    "file": "css-specificity.md"
+  },
+  {
     "id": "binary-tree-advanced",
     "title": "二叉树（2）：进阶",
     "category": "数据结构与算法",

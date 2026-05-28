@@ -70,6 +70,8 @@ function markdownToHtml(markdown) {
   let paragraph = [];
   let list = [];
   let listType = "ul";
+  let table = [];
+  let quote = [];
   let code = [];
   let inCode = false;
   let codeLang = "";
@@ -87,12 +89,54 @@ function markdownToHtml(markdown) {
     listType = "ul";
   };
 
+  const splitTableRow = (line) =>
+    line
+      .replace(/^\|/, "")
+      .replace(/\|$/, "")
+      .split("|")
+      .map((cell) => cell.trim());
+
+  const flushTable = () => {
+    if (!table.length) return;
+    const [header, , ...rows] = table;
+    html.push(`
+      <div class="table-wrap">
+        <table>
+          <thead><tr>${splitTableRow(header).map((cell) => `<th>${parseInlineMarkdown(cell)}</th>`).join("")}</tr></thead>
+          <tbody>
+            ${rows
+              .map((row) => `<tr>${splitTableRow(row).map((cell) => `<td>${parseInlineMarkdown(cell)}</td>`).join("")}</tr>`)
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+    `);
+    table = [];
+  };
+
+  const flushQuote = () => {
+    if (!quote.length) return;
+    html.push(`<blockquote>${quote.map((line) => `<p>${parseInlineMarkdown(line)}</p>`).join("")}</blockquote>`);
+    quote = [];
+  };
+
+  const flushFlow = () => {
+    flushParagraph();
+    flushList();
+    flushTable();
+    flushQuote();
+  };
+
   const pushListItem = (type, item) => {
     flushParagraph();
+    flushTable();
+    flushQuote();
     if (list.length && listType !== type) flushList();
     listType = type;
     list.push(item);
   };
+
+  const isTableSeparator = (line) => /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(line);
 
   lines.forEach((line) => {
     const trimmed = line.trim();
@@ -104,8 +148,7 @@ function markdownToHtml(markdown) {
         codeLang = "";
         inCode = false;
       } else {
-        flushParagraph();
-        flushList();
+        flushFlow();
         codeLang = trimmed.slice(3).trim();
         inCode = true;
       }
@@ -118,28 +161,45 @@ function markdownToHtml(markdown) {
     }
 
     if (!trimmed) {
+      flushFlow();
+      return;
+    }
+
+    if (trimmed.includes("|") && (trimmed.startsWith("|") || table.length)) {
       flushParagraph();
       flushList();
+      flushQuote();
+      table.push(trimmed);
+      return;
+    }
+
+    if (table.length && !isTableSeparator(trimmed)) {
+      flushTable();
+    }
+
+    if (trimmed.startsWith(">")) {
+      flushParagraph();
+      flushList();
+      flushTable();
+      const quoteLine = trimmed.replace(/^>\s?/, "").trim();
+      if (quoteLine) quote.push(quoteLine);
       return;
     }
 
     if (trimmed.startsWith("# ")) {
-      flushParagraph();
-      flushList();
+      flushFlow();
       html.push(`<h3>${parseInlineMarkdown(trimmed.slice(2))}</h3>`);
       return;
     }
 
     if (trimmed.startsWith("### ")) {
-      flushParagraph();
-      flushList();
+      flushFlow();
       html.push(`<h3>${parseInlineMarkdown(trimmed.slice(4))}</h3>`);
       return;
     }
 
     if (trimmed.startsWith("## ")) {
-      flushParagraph();
-      flushList();
+      flushFlow();
       html.push(`<h3>${parseInlineMarkdown(trimmed.slice(3))}</h3>`);
       return;
     }
@@ -160,6 +220,8 @@ function markdownToHtml(markdown) {
 
   flushParagraph();
   flushList();
+  flushTable();
+  flushQuote();
 
   if (inCode) {
     html.push(`<pre><code class="language-${escapeHtml(codeLang)}">${escapeHtml(code.join("\n"))}</code></pre>`);
