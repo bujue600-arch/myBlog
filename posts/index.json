@@ -1,5 +1,16 @@
 [
   {
+    "id": "two-pointers-patterns",
+    "title": "双指针（对撞、分离、快慢）",
+    "category": "数据结构与算法",
+    "date": "2026-05-30",
+    "readTime": "7 min",
+    "cover": "https://images.unsplash.com/photo-1518186233392-c232efbf2373?auto=format&fit=crop&w=900&q=80",
+    "tags": ["双指针", "LeetCode", "JavaScript", "算法"],
+    "excerpt": "从对撞指针、分离指针和快慢指针三类题型出发，总结双指针的降维本质、适用场景、JS 模板和做题心法。",
+    "file": "two-pointers-patterns.md"
+  },
+  {
     "id": "css-specificity",
     "title": "CSS 选择器优先级详解",
     "category": "CSS",
