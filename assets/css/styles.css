@@ -35,6 +35,10 @@ body {
   line-height: 1.7;
 }
 
+body.hero-loading {
+  overflow: hidden;
+}
+
 body.reader-open {
   overflow: hidden;
 }
@@ -182,6 +186,22 @@ input {
   z-index: 1;
   width: min(880px, calc(100% - 32px));
   padding-top: 12px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.hero-loading .hero-content,
+.hero-loading .scroll-down {
+  opacity: 0;
+}
+
+.hero-loading .hero-content {
+  transform: translateY(10px);
+}
+
+.hero-loading .typewriter::after {
+  animation: none;
 }
 
 .hero h1 {

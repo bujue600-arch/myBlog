@@ -32,6 +32,53 @@ const els = {
   typewriter: document.querySelector("#typewriter"),
 };
 
+const HERO_IMAGE_SRC = "assets/images/hero-berserk-moon.jpg";
+const HERO_READY_TIMEOUT = 1800;
+
+function waitForHeroImage() {
+  return new Promise((resolve) => {
+    const image = new Image();
+    const done = () => resolve();
+
+    image.addEventListener("load", async () => {
+      if (image.decode) {
+        try {
+          await image.decode();
+        } catch (error) {
+          // Some browsers reject decode for cached images; the load event is enough here.
+        }
+      }
+      done();
+    }, { once: true });
+    image.addEventListener("error", done, { once: true });
+    image.src = HERO_IMAGE_SRC;
+  });
+}
+
+function waitForHeroFont() {
+  if (!document.fonts || !document.fonts.load) return Promise.resolve();
+  return Promise.all([
+    document.fonts.load('900 1em "Noto Serif SC"', "不觉的博客"),
+    document.fonts.load('700 1em "Noto Serif SC"', "不觉的博客"),
+  ]).then(() => undefined);
+}
+
+function markHeroReady() {
+  document.body.classList.remove("hero-loading");
+}
+
+async function prepareHero() {
+  try {
+    await Promise.race([
+      Promise.all([waitForHeroImage(), waitForHeroFont()]),
+      new Promise((resolve) => window.setTimeout(resolve, HERO_READY_TIMEOUT)),
+    ]);
+  } finally {
+    markHeroReady();
+    bootTypewriter();
+  }
+}
+
 const formatDate = (date) =>
   new Intl.DateTimeFormat("zh-CN", {
     year: "numeric",
@@ -482,8 +529,8 @@ function bootTypewriter() {
 }
 
 async function init() {
+  prepareHero();
   bindEvents();
-  bootTypewriter();
 
   try {
     await loadPosts();
