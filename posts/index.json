@@ -1,5 +1,27 @@
 [
   {
+    "id": "css-stacking-order-interview-guide",
+    "title": "CSS 层叠顺序面试指南",
+    "category": "CSS",
+    "date": "2026-05-31",
+    "readTime": "8 min",
+    "cover": "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80",
+    "tags": ["CSS", "层叠上下文", "z-index", "面试"],
+    "excerpt": "用“拼爹”理论拆解层叠上下文、层叠水平和七阶层叠顺序，帮助理解 z-index 失效等 CSS 面试高频问题。",
+    "file": "css-stacking-order-interview-guide.md"
+  },
+  {
+    "id": "bfc-deep-dive",
+    "title": "深度解析 BFC 及其应用场景",
+    "category": "CSS",
+    "date": "2026-05-31",
+    "readTime": "8 min",
+    "cover": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80",
+    "tags": ["CSS", "BFC", "布局", "面试"],
+    "excerpt": "从核心概念、触发方式和三大应用场景出发，系统理解 BFC 如何解决 margin 重叠、清除浮动和两栏布局问题。",
+    "file": "bfc-deep-dive.md"
+  },
+  {
     "id": "two-pointers-patterns",
     "title": "双指针（对撞、分离、快慢）",
     "category": "数据结构与算法",
